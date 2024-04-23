@@ -10,10 +10,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityMainBinding
+import com.yalantis.ucrop.UCrop
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var currentImageUri: Uri? = null
+    private lateinit var destinationUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,19 +40,39 @@ class MainActivity : AppCompatActivity() {
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri: Uri? ->
-        if (uri != null) {
+        uri?.let {
             currentImageUri = uri
-            showImage()
-        } else {
-            Log.d("Photo Picker", "No media selected")
+            // Start uCrop activity
+            startUCropActivity(it)
+        } ?: Log.d("Photo Picker", "No media selected")
+    }
+
+    private fun startUCropActivity(uri: Uri) {
+        // Destination uri where the cropped image will be saved
+        destinationUri = Uri.fromFile(File(cacheDir, "${System.currentTimeMillis()}_cropped.jpg"))
+        UCrop.of(uri, destinationUri)
+            .start(this)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+            // Handle cropped image result
+            handleUCropResult(data)
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            // Handle uCrop error
+            val error = UCrop.getError(data!!)
+            showToast(error?.localizedMessage ?: getString(R.string.input_image_warning))
         }
     }
 
-    private fun showImage() {
-        currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
-            binding.previewImageView.setImageURI(it)
-        }
+    private fun handleUCropResult(data: Intent?) {
+        val resultUri = UCrop.getOutput(data!!)
+        resultUri?.let {
+            binding.previewImageView.setImageURI(resultUri)
+            currentImageUri = resultUri
+        } ?: showToast(getString(R.string.input_image_warning))
     }
 
     private fun analyzeImage(uri: Uri) {
