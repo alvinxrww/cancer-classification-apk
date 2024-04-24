@@ -11,6 +11,6 @@ interface HistoryDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(history: History)
 
-    @Query("SELECT * from history")
+    @Query("SELECT * from history order by date desc")
     fun getAllHistory(): LiveData<List<History>>
 }

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.asclepius.data.local.database.History
 import com.dicoding.asclepius.databinding.ActivityResultBinding
+import com.dicoding.asclepius.helper.HistoryViewModel
 import com.dicoding.asclepius.helper.ImageClassifierHelper
 import org.tensorflow.lite.task.vision.classifier.Classifications
 import java.text.NumberFormat
