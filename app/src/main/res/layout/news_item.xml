@@ -14,7 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="141dp"
+        android:layout_height="match_parent"
         android:padding="8dp">
 
         <ImageView
@@ -29,48 +29,33 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tv_item_label"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
+            android:id="@+id/tv_item_title"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/img_item_photo"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
             card_view:layout_constraintTop_toTopOf="@+id/img_item_photo"
-            tools:text="label" />
+            tools:text="title" />
 
         <TextView
-            android:id="@+id/tv_item_timediff"
-            android:layout_width="100dp"
-            android:layout_height="28dp"
-
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:alpha="0.5"
-            android:text="@string/timediff"
-            android:textAlignment="viewEnd"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            card_view:layout_constraintStart_toEndOf="@id/tv_item_label"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_item_label" />
-
-        <TextView
-            android:id="@+id/tv_item_score"
+            android:id="@+id/tv_item_description"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="5"
-            android:textSize="16sp"
+            android:textSize="14sp"
             card_view:layout_constraintBottom_toBottomOf="@+id/img_item_photo"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_timediff"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_item_label"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_label"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_title"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_item_title"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_title"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:text="score" />
+            tools:text="description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

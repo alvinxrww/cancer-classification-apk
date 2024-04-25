@@ -46,12 +46,13 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.history_page -> {
-                val moveIntent =Intent(this@MainActivity, HistoryActivity::class.java)
-                startActivity(moveIntent)
+                val historyIntent = Intent(this@MainActivity, HistoryActivity::class.java)
+                startActivity(historyIntent)
             }
 
             R.id.news_page -> {
-
+                val newsIntent = Intent(this@MainActivity, NewsActivity::class.java)
+                startActivity(newsIntent)
             }
         }
         return super.onOptionsItemSelected(item)

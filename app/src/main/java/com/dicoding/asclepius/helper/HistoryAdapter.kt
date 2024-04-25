@@ -35,7 +35,7 @@ class HistoryAdapter : ListAdapter<History, HistoryAdapter.ListViewHolder>(DIFF_
         historyBinding.imgItemPhoto.setImageURI(imageUri)
         historyBinding.tvItemLabel.text = label
         historyBinding.tvItemScore.text = score
-        historyBinding.tvItemDatetime.text = datetimeDiff
+        historyBinding.tvItemTimediff.text = datetimeDiff
     }
 
     private fun getDateDiff(date1: String, date2: String): String {
