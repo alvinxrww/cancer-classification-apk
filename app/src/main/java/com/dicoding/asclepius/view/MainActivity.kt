@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityMainBinding
 import com.yalantis.ucrop.UCrop
+import com.yalantis.ucrop.UCropActivity
 import java.io.File
 
 @Suppress("DEPRECATION")
@@ -73,9 +74,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startUCropActivity(uri: Uri) {
-        // Destination uri where the cropped image will be saved
-        destinationUri = Uri.fromFile(File(cacheDir, "${System.currentTimeMillis()}_cropped.jpg"))
+        destinationUri = Uri.fromFile(File(cacheDir, "${System.currentTimeMillis()}_edited.jpg"))
+
+        val options = UCrop.Options().apply {
+            setToolbarColor(getColor(R.color.white))
+            setStatusBarColor(getColor(R.color.lightPrimary))
+            setToolbarWidgetColor(getColor(R.color.lightAccent))
+            setRootViewBackgroundColor(getColor(R.color.lightBackground))
+            setAllowedGestures(UCropActivity.ALL, UCropActivity.ALL, UCropActivity.ALL)
+            setFreeStyleCropEnabled(true)
+            setCircleDimmedLayer(false)
+        }
+
         UCrop.of(uri, destinationUri)
+            .withOptions(options)
             .start(this)
     }
 
