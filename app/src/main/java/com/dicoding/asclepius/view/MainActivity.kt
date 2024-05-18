@@ -30,6 +30,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
 
         binding.galleryButton.setOnClickListener { startGallery() }
+        binding.editButton.setOnClickListener {
+            currentImageUri?.let {
+                startUCropActivity(it)
+            } ?: run {
+                showToast(getString(R.string.input_image_warning))
+            }
+        }
         binding.analyzeButton.setOnClickListener {
             currentImageUri?.let {
                 analyzeImage(it)

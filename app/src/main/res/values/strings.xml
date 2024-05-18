@@ -10,4 +10,5 @@
     <string name="timediff">timediff</string>
     <string name="image">image</string>
     <string name="preview_image">preview image</string>
+    <string name="edit">Edit</string>
 </resources>
