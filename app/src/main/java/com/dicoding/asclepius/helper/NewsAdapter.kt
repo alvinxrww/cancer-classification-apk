@@ -1,4 +1,4 @@
-package com.dicoding.asclepius
+package com.dicoding.asclepius.helper
 
 import android.content.Intent
 import android.net.Uri
@@ -22,8 +22,6 @@ class NewsAdapter : ListAdapter<ArticlesItem, NewsAdapter.ListViewHolder>(DIFF_C
         val imageUrl = news.urlToImage
         val title = news.title
         val description = news.description
-//        val datePublished = news.publishedAt
-//        val newsUrl = news.url
 
         Glide.with(holder.itemView.context)
             .load(imageUrl)

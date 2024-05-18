@@ -3,14 +3,14 @@ package com.dicoding.asclepius.view
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.asclepius.NewsViewModel
-import com.dicoding.asclepius.databinding.ActivityNewsBinding
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.asclepius.NewsAdapter
 import com.dicoding.asclepius.data.remote.response.ArticlesItem
+import com.dicoding.asclepius.databinding.ActivityNewsBinding
+import com.dicoding.asclepius.helper.NewsAdapter
+import com.dicoding.asclepius.helper.NewsViewModel
 
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
